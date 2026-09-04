@@ -36,6 +36,12 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         CheckBoundary();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            ChangeDirection(-moveDirection);
+
+        }
     }
 
     private void Move()
@@ -50,12 +56,18 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.x >= rightBoundary)
         {
-            moveDirection = -1f;
+            ChangeDirection(-1f);
         }
 
         if (transform.position.x <= leftBoundary)
         {
-            moveDirection = 1f;
+            ChangeDirection(1f);
         }
+    }
+
+    private void ChangeDirection(float direction)
+    {
+        moveDirection = direction;
+        spriteRenderer.flipX = direction < 0f;
     }
 }
