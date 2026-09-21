@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class FallingSpawner : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class FallingSpawner : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("ObstacleRain", 0f, 1f);
+        StartCoroutine(RainCoroutine());
     }
 
     void ObstacleRain()
@@ -28,5 +29,13 @@ public class FallingSpawner : MonoBehaviour
         Instantiate(obstacle, topEdge, Quaternion.identity);
     }
 
+    private IEnumerator RainCoroutine()
+    {
+        while (true)
+        {
+            ObstacleRain();
 
+            yield return new WaitForSeconds(1f);
+        }
+    }
 }

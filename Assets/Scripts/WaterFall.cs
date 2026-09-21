@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WaterFall : MonoBehaviour
 {
+    private void Awake()
+    {
+
+    }
     void Start()
     {
         
@@ -20,6 +25,7 @@ public class WaterFall : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("충돌감지");
+            GameManager.Instance.GameOver();
         }
     }
 }
