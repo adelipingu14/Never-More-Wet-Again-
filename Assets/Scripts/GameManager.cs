@@ -9,9 +9,18 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    private void Start()
+    {
+        GameStart();
+    }
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void GameStart()
+    { 
+        Time.timeScale = 1.0f;
     }
 
     public void GameOver()
