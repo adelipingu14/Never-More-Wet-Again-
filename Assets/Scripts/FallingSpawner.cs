@@ -4,9 +4,9 @@ using System.Collections;
 public class FallingSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject obstacle;
+    [SerializeField] private float spawnInterval = 1f;
 
     private Camera mainCamera;
-
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -35,7 +35,17 @@ public class FallingSpawner : MonoBehaviour
         {
             ObstacleRain();
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(spawnInterval);
         }
+    }
+
+    public void RainIncreased()
+    {
+        if (spawnInterval <= 0.5f)
+        {
+            return;
+        }
+
+        spawnInterval -= 0.1f;
     }
 }
